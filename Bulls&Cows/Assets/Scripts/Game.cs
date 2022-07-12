@@ -6,34 +6,34 @@ using System.Linq;
 
 public class Game : MonoBehaviour
 {
-    private System.Random rand = new System.Random(); // Переменная для генерации случайных чисел
-    private int[] inventNumber = new int[4]; // Массив загаданного числа
-    private string inventNumberString; // Строковая переменная для чисел
+    private System.Random rand = new System.Random(); // РџРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+    private int[] inventNumber = new int[4]; // РњР°СЃСЃРёРІ Р·Р°РіР°РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р°
+    private string inventNumberString; // РЎС‚СЂРѕРєРѕРІР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ С‡РёСЃРµР»
     private string dropdownsNumber; //
-    private int fullCoincidence; // Полное совпадение чисел
-    private int partlyCoincidence; // Частичное совпадение чисел
+    private int fullCoincidence; // РџРѕР»РЅРѕРµ СЃРѕРІРїР°РґРµРЅРёРµ С‡РёСЃРµР»
+    private int partlyCoincidence; // Р§Р°СЃС‚РёС‡РЅРѕРµ СЃРѕРІРїР°РґРµРЅРёРµ С‡РёСЃРµР»
 
-    private int attempt; // Кол-во попыток
-    private int stars; // Кол-во звезд
-    private int level = 1; // Уровень игрока
-    private float scores; // Кол-во очков
+    private int attempt; // РљРѕР»-РІРѕ РїРѕРїС‹С‚РѕРє
+    private int stars; // РљРѕР»-РІРѕ Р·РІРµР·Рґ
+    private int level = 1; // РЈСЂРѕРІРµРЅСЊ РёРіСЂРѕРєР°
+    private float scores; // РљРѕР»-РІРѕ РѕС‡РєРѕРІ
 
-    public Text attemptText; // Текст попыток
-    public Text pastNumber; // Текст прошлых введеных чисел
-    public Text levelText; // Уровень текст
-    public Text starsText; // Звезды текст
-    public Text notStars; // Не хватает звезд.
+    public Text attemptText; // РўРµРєСЃС‚ РїРѕРїС‹С‚РѕРє
+    public Text pastNumber; // РўРµРєСЃС‚ РїСЂРѕС€Р»С‹С… РІРІРµРґРµРЅС‹С… С‡РёСЃРµР»
+    public Text levelText; // РЈСЂРѕРІРµРЅСЊ С‚РµРєСЃС‚
+    public Text starsText; // Р—РІРµР·РґС‹ С‚РµРєСЃС‚
+    public Text notStars; // РќРµ С…РІР°С‚Р°РµС‚ Р·РІРµР·Рґ.
     public Text notStars1;
 
-    public Dropdown[] dropdowns; // Выпадающие списки
+    public Dropdown[] dropdowns; // Р’С‹РїР°РґР°СЋС‰РёРµ СЃРїРёСЃРєРё
     public Image levelImage;
 
-    public GameObject menuPan; // Меню панель
-    public GameObject endAttemptPan; // Панель при окончании попыток
+    public GameObject menuPan; // РњРµРЅСЋ РїР°РЅРµР»СЊ
+    public GameObject endAttemptPan; // РџР°РЅРµР»СЊ РїСЂРё РѕРєРѕРЅС‡Р°РЅРёРё РїРѕРїС‹С‚РѕРє
     public GameObject AboutGamePan;
     public GameObject recordPan;
     public GameObject howGamePan;
-    public Button check; // Кнопка "проверить"
+    public Button check; // РљРЅРѕРїРєР° "РїСЂРѕРІРµСЂРёС‚СЊ"
 
     [Header("Records")]
     public Text allAttemptText; //
@@ -67,7 +67,7 @@ public class Game : MonoBehaviour
             recordsText = sv.recordsText;
             levelImage.fillAmount = scores / (5 * level);
             starsText.text = stars.ToString();
-            levelText.text = "Уровень: " + level;
+            levelText.text = "РЈСЂРѕРІРµРЅСЊ: " + level;
         }
     }
 
@@ -80,10 +80,10 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     //void Update()
     //{
-    //    levelText.text = "Уровень: " + level;
+    //    levelText.text = "РЈСЂРѕРІРµРЅСЊ: " + level;
     //}
 
-    public void NewGame() // Запуск новой игры
+    public void NewGame() // Р—Р°РїСѓСЃРє РЅРѕРІРѕР№ РёРіСЂС‹
     {
         dropdowns[0].value = 0;
         dropdowns[1].value = 0;
@@ -91,23 +91,23 @@ public class Game : MonoBehaviour
         dropdowns[3].value = 0;
         attempt = 10;
         attemptCount = 0;
-        attemptText.text = "Осталось попыток: " + attempt.ToString();
+        attemptText.text = "РћСЃС‚Р°Р»РѕСЃСЊ РїРѕРїС‹С‚РѕРє: " + attempt.ToString();
         pastNumber.text = "";
         menuPan.SetActive(false);
         NewNumber();
         endAttemptPan.SetActive(false);
     }
 
-    private void NewNumber() // Создание нового числа (Рандом)
+    private void NewNumber() // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ С‡РёСЃР»Р° (Р Р°РЅРґРѕРј)
     {
         bool contains; //
-        for (int i = 0; i < 4; i++) // цикл заполнения массива нового числа новыми цифрами
+        for (int i = 0; i < 4; i++) // С†РёРєР» Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°СЃСЃРёРІР° РЅРѕРІРѕРіРѕ С‡РёСЃР»Р° РЅРѕРІС‹РјРё С†РёС„СЂР°РјРё
         {
             do
             {
                 contains = false;
-                inventNumber[i] = rand.Next(10); // создание новой цифры
-                for (int a = 0; a < i; a++) // цикл сравнения сгенерированной цифры с предыдущими
+                inventNumber[i] = rand.Next(10); // СЃРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ С†РёС„СЂС‹
+                for (int a = 0; a < i; a++) // С†РёРєР» СЃСЂР°РІРЅРµРЅРёСЏ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅРѕР№ С†РёС„СЂС‹ СЃ РїСЂРµРґС‹РґСѓС‰РёРјРё
                 {
                     if (inventNumber[a] == inventNumber[i])
                     {
@@ -116,16 +116,16 @@ public class Game : MonoBehaviour
                 }
             } while (contains);
         }
-        inventNumberString = inventNumber[0].ToString() + inventNumber[1] + inventNumber[2] + inventNumber[3]; // из элементов делаем строку
+        inventNumberString = inventNumber[0].ToString() + inventNumber[1] + inventNumber[2] + inventNumber[3]; // РёР· СЌР»РµРјРµРЅС‚РѕРІ РґРµР»Р°РµРј СЃС‚СЂРѕРєСѓ
     }
 
-    public void CheckNumber() // Проверка числа
+    public void CheckNumber() // РџСЂРѕРІРµСЂРєР° С‡РёСЃР»Р°
     {
         ComparingNumbers();
         Result();
     }
 
-    private void ComparingNumbers() // Сравнение введенных и загаданного числа
+    private void ComparingNumbers() // РЎСЂР°РІРЅРµРЅРёРµ РІРІРµРґРµРЅРЅС‹С… Рё Р·Р°РіР°РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р°
     {
         fullCoincidence = 0;
         partlyCoincidence = 0;
@@ -140,9 +140,9 @@ public class Game : MonoBehaviour
             }
         }
     }
-    private void Result() // Вывод результата
+    private void Result() // Р’С‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚Р°
     {
-        if (fullCoincidence >= 4) // Выигрыш, если отгаданы все.
+        if (fullCoincidence >= 4) // Р’С‹РёРіСЂС‹С€, РµСЃР»Рё РѕС‚РіР°РґР°РЅС‹ РІСЃРµ.
         {
             check.interactable = false;
             attemptText.text = "";
@@ -164,26 +164,26 @@ public class Game : MonoBehaviour
             }
             else
             {
-                string nameBull = " Быков и ";
-                string nameCow = " Коров";
-                if (fullCoincidence == 1) nameBull = " Бык и ";
-                if (fullCoincidence >= 2) nameBull = " Быка и ";
-                if (partlyCoincidence == 1) nameCow = " Корова";
-                if (partlyCoincidence >= 2) nameCow = " Коровы";
-                attemptText.text = "Осталось попыток: " + attempt;
+                string nameBull = " Р‘С‹РєРѕРІ Рё ";
+                string nameCow = " РљРѕСЂРѕРІ";
+                if (fullCoincidence == 1) nameBull = " Р‘С‹Рє Рё ";
+                if (fullCoincidence >= 2) nameBull = " Р‘С‹РєР° Рё ";
+                if (partlyCoincidence == 1) nameCow = " РљРѕСЂРѕРІР°";
+                if (partlyCoincidence >= 2) nameCow = " РљРѕСЂРѕРІС‹";
+                attemptText.text = "РћСЃС‚Р°Р»РѕСЃСЊ РїРѕРїС‹С‚РѕРє: " + attempt;
                 pastNumber.text += dropdownsNumber + " - " + fullCoincidence + nameBull + partlyCoincidence + nameCow + "\n";
             }
         }
     }
 
-    private void LevelUpdate() // Повышение уровня
+    private void LevelUpdate() // РџРѕРІС‹С€РµРЅРёРµ СѓСЂРѕРІРЅСЏ
     {
         if (scores / (5 * level) >= 1)
         {
             levelImage.fillAmount = 0;
             scores = 0;
             level++;
-            levelText.text = "Уровень: " + level;
+            levelText.text = "РЈСЂРѕРІРµРЅСЊ: " + level;
         }
         else
         {
@@ -193,11 +193,11 @@ public class Game : MonoBehaviour
         if (recordsAttempt > attemptCount)
         {
             recordsAttempt = attemptCount;
-            recordsText = "Рекорд: число " + dropdownsNumber + " отгадано за " + recordsAttempt + " попыток";
+            recordsText = "Р РµРєРѕСЂРґ: С‡РёСЃР»Рѕ " + dropdownsNumber + " РѕС‚РіР°РґР°РЅРѕ Р·Р° " + recordsAttempt + " РїРѕРїС‹С‚РѕРє";
         }
     }
 
-    public void ExitMenu() // Выход в меню
+    public void ExitMenu() // Р’С‹С…РѕРґ РІ РјРµРЅСЋ
     {
         menuPan.SetActive(true);
         endAttemptPan.SetActive(false);
@@ -213,10 +213,10 @@ public class Game : MonoBehaviour
     public void OpenRecord() //
     {
         recordPan.SetActive(true);
-        allAttemptText.text = "Всего попыток: " + allAttempt;
-        allHintText.text = "Всего подсказок использовано: " + allHint;
-        allEarnedStarsText.text = "Всего заработано звезд: " + allEarnedStars;
-        allSpentStarsText.text = "Всего потрачено звезд: " + allSpentStars;
+        allAttemptText.text = "Р’СЃРµРіРѕ РїРѕРїС‹С‚РѕРє: " + allAttempt;
+        allHintText.text = "Р’СЃРµРіРѕ РїРѕРґСЃРєР°Р·РѕРє РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ: " + allHint;
+        allEarnedStarsText.text = "Р’СЃРµРіРѕ Р·Р°СЂР°Р±РѕС‚Р°РЅРѕ Р·РІРµР·Рґ: " + allEarnedStars;
+        allSpentStarsText.text = "Р’СЃРµРіРѕ РїРѕС‚СЂР°С‡РµРЅРѕ Р·РІРµР·Рґ: " + allSpentStars;
         bestRecords.text = recordsText;
     }
     public void ClosedRecord() //
@@ -231,7 +231,7 @@ public class Game : MonoBehaviour
     {
         howGamePan.SetActive(false);
     }
-    public void BuyAttempt() // Покупка попыток
+    public void BuyAttempt() // РџРѕРєСѓРїРєР° РїРѕРїС‹С‚РѕРє
     {
         if (stars >= 1)
         {
@@ -244,18 +244,18 @@ public class Game : MonoBehaviour
     }
     IEnumerator NotMoney() // 
     {
-        notStars.text = "Недостаточно звезд!" + "\n" + "(отгадывайте числа, чтобы собрать больше звезд)";
-        notStars1.text = "Недостаточно звезд!" + "\n" + "(отгадывайте числа, чтобы собрать больше звезд)";
+        notStars.text = "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·РІРµР·Рґ!" + "\n" + "(РѕС‚РіР°РґС‹РІР°Р№С‚Рµ С‡РёСЃР»Р°, С‡С‚РѕР±С‹ СЃРѕР±СЂР°С‚СЊ Р±РѕР»СЊС€Рµ Р·РІРµР·Рґ)";
+        notStars1.text = "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р·РІРµР·Рґ!" + "\n" + "(РѕС‚РіР°РґС‹РІР°Р№С‚Рµ С‡РёСЃР»Р°, С‡С‚РѕР±С‹ СЃРѕР±СЂР°С‚СЊ Р±РѕР»СЊС€Рµ Р·РІРµР·Рґ)";
         yield return new WaitForSeconds(3f);
         notStars.text = "";
         notStars1.text = "";
         yield break;
     }
-    IEnumerator AutoRestart() // Обновление числа авто
+    IEnumerator AutoRestart() // РћР±РЅРѕРІР»РµРЅРёРµ С‡РёСЃР»Р° Р°РІС‚Рѕ
     {
-        pastNumber.text = dropdownsNumber + " Вы отгадали! " + "\n" + "Оставалось попыток: " + attempt;
+        pastNumber.text = dropdownsNumber + " Р’С‹ РѕС‚РіР°РґР°Р»Рё! " + "\n" + "РћСЃС‚Р°РІР°Р»РѕСЃСЊ РїРѕРїС‹С‚РѕРє: " + attempt;
         yield return new WaitForSeconds(2f);
-        pastNumber.text = "Продолжаем! Загадано новое число";
+        pastNumber.text = "РџСЂРѕРґРѕР»Р¶Р°РµРј! Р—Р°РіР°РґР°РЅРѕ РЅРѕРІРѕРµ С‡РёСЃР»Рѕ";
         yield return new WaitForSeconds(2f);
         check.interactable = true;
         NewGame();
@@ -266,18 +266,18 @@ public class Game : MonoBehaviour
         if (stars >= 1)
         {
             int i = Random.Range(0, 4);
-            pastNumber.text += "<color=red>Подсказка: в числе точно есть цифра: </color>" + inventNumberString[i].ToString() + "\n";
+            pastNumber.text += "<color=red>РџРѕРґСЃРєР°Р·РєР°: РІ С‡РёСЃР»Рµ С‚РѕС‡РЅРѕ РµСЃС‚СЊ С†РёС„СЂР°: </color>" + inventNumberString[i].ToString() + "\n";
             stars--;
             starsText.text = stars.ToString();
             allHint++;
         }
         else StartCoroutine(NotMoney());
     }
-    public void Proverka() // тест проверка числа
+    public void Proverka() // С‚РµСЃС‚ РїСЂРѕРІРµСЂРєР° С‡РёСЃР»Р°
     {
         print(inventNumberString);
     }
-    private void OnApplicationPause(bool pause) // Сохранения.
+    private void OnApplicationPause(bool pause) // РЎРѕС…СЂР°РЅРµРЅРёСЏ.
     {
         sv.stars = stars;
         sv.level = level;
