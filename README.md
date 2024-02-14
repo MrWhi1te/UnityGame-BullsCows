@@ -1,6 +1,8 @@
 # BullsCows
-![alt text](https://avatars.mds.yandex.net/get-games/2977039/2a0000018207139e1e9ce62fcfd7c008ec0e/cover1)
+![icon](https://avatars.mds.yandex.net/get-games/2977039/2a0000018207139e1e9ce62fcfd7c008ec0e/cover1)
 ### [Запустить игру](https://yandex.ru/games/app/192576)
 
 ## Об игре
 Быки и коровы — логическая игра, в ходе которой за несколько попыток игрок должен определить, задуманное число. В своё время эта игра была очень популярна среди студентов и школьников. Игра развивает умение анализировать и логически мыслить.
+
+![screen](https://avatars.mds.yandex.net/get-games/1881371/2a000001820b396e9e539c92c3ac441ced80//orig)
